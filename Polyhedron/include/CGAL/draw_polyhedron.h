@@ -101,13 +101,16 @@ protected:
   {
     clear();
 
+    bool draw_me = true;
     if (!m_nofaces)
     {
       for(typename Polyhedron::Facet_const_iterator f=poly.facets_begin();
           f!=poly.facets_end(); f++)
       {
-        if (f!=boost::graph_traits<Polyhedron>::null_face())
-        { compute_face(f); }
+        if (f!=boost::graph_traits<Polyhedron>::null_face()&&draw_me)
+        { compute_face(f); 
+        }
+        draw_me=!draw_me;
       }
     }
 
